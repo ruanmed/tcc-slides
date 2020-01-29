@@ -1,0 +1,1024 @@
+%%%% utfprpgtex-slides.tex, 2019/02/21
+%%%% Copyright (C) 2015-2019 Luiz E. M. Lima (luizeduardomlima@gmail.com)
+%%
+%% Este arquivo pode ser distribuído e/ou modificado sob as condições da
+%% Licença Pública do Projeto LaTeX, tanto a versão 1.3 desta licença ou (à sua
+%% opção) qualquer versão posterior.
+%% A versão mais recente desta licença está disponível em
+%%   http://www.latex-project.org/lppl.txt
+%% e a versão 1.3 ou posterior faz parte de todas as distribuições de LaTeX
+%% versão 2005/12/01 ou posterior.
+%%
+%% Este arquivo tem o estado de manutenção da LPPL `mantida'.
+%%
+%% O mantenedor atual deste arquivo é Luiz E. M. Lima.
+%%
+%% Este projeto consiste dos arquivos utfprpgtex-slides.sty e
+%% utfprpgtex-slides.tex.
+%%
+%% utfprpgtex-slides.tex é o arquivo principal do modelo LaTeX (não oficial)
+%% para produção de apresentação de slides da Universidade Tecnológica Federal
+%% do Paraná (UTFPR). Foi desenvolvido baseado no modelo de apresentação de
+%% slides do abnTeX2, disponível em <http://www.abntex.net.br/>, criado por
+%% Fábio Rodrigues Silva usando a classe beamer, disponível em
+%% <http://ctan.org/pkg/beamer/>.
+
+%% Classe e opções de documento
+%%%% Modo apresentação --- Descomente o comando \documentclass[]{beamer}
+\documentclass[%% Opções
+  10pt,%% Tamanho de fonte: 10pt, 11pt, 12pt, etc.
+  aspectratio = 169,%% Razão de aspecto: 1610 (16:10), 169 (16:9), 149 (14:9), 54 (5:4), 43 (4:3 - padrão) e 32 (3:2)
+  compress,%% Tenta reduzir o tamanho das barras de navegação (comente para desabilitar)
+  t,%% Alinhamento vertical dos quadros: b (fundo), c (centro) e t (topo)
+  % handout,%% Cria uma versão que usa as especificações de sobreposição do folheto (comente para desabilitar)
+]{beamer}%% Classe beamer
+%%%% Modo artigo --- Descomente os comandos \documentclass[]{article} e \usepackage{beamerarticle}
+% \documentclass[a4paper, twocolumn]{article}%% Classe artigo
+% \usepackage{beamerarticle}%% Utiliza o modo artigo da classe beamer
+
+%% Passagem de opções para pacotes
+\PassOptionsToPackage{english, main = brazilian}{babel}%% Suporte multilíngue
+
+
+% https://pt.overleaf.com/latex/templates/federal-university-of-technology-parana-slides/dvhwwfqzftqk
+
+%% Pacotes utilizados
+\usepackage[UseMECLogo]{utfprpgtex-slides}%% Estilos do modelo
+
+\usepackage{enumerate}
+
+% Pacote para inserir divisória diagonal em tabela
+\usepackage{diagbox}
+
+% Pacote para auxiliar em tabelas criando novas células
+\usepackage{makecell}
+
+
+\usepackage{adjustbox}
+%--------------------------------------------------------------------------------
+% Outros pacotes adicionais para circuitos - by @ruanmed
+%--------------------------------------------------------------------------------
+\RequirePackage{tikz}
+\usepackage{tikz}
+\usepackage[siunitx]{circuitikz}			% para habilitar o desenho de circuitos
+\usetikzlibrary{babel}
+% ---
+
+% para tabelas com multi colunas e multi linhas
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{booktabs}
+
+
+%  https://tex.stackexchange.com/questions/324951/how-can-i-draw-a-vector-diagram-that-illustrates-polar-and-rectangular-coordinat
+\usetikzlibrary{angles, arrows.meta, quotes}
+
+% Pacote para usar modulo de vetor || v || com \norm - https://tex.stackexchange.com/questions/43008/absolute-value-symbols
+\usepackage{commath}
+
+%% Arquivo de referências
+\addbibresource{utfprpgtex-slides.bib}
+
+%% Arquivos de logomarcas (presentes no diretório ``Logos'') --- Deixe o campo {} vazio ou comente para remover
+\logoevent{logo-evento}%% Logomarca do evento
+\logoorg{logo-org}%% Logomarca da organização promotora
+\logoextinst{logo-inst-ext}%% Logomarca da instituição do autor externo
+% \logoprog{logo-ppg}%% Logomarca do programa ou do curso
+\logodept{logo-cecomp}%% Logomarca do departamento ou da coordenação
+\logocampus{logo-univasf}%% Logomarca do câmpus
+
+%% Informações do documento
+\title[Trabalho de Conclusão de Curso I]{%% Título da apresentação: [curto] e {longo}
+  \texorpdfstring{\mode<article>{\bfseries}}{}%% Modo artigo --- Negrito
+  Estudo investigativo sobre o desempenho de atributos de Recuperação de Informação em tarefas de Mineração de Textos%
+}
+\subtitle{%% Subtítulo da apresentação
+  %
+}
+\subject{Assunto}%% Assunto da apresentação, e.g.: {Nome do Evento}
+%%%% Congresso, Seminário ou Evento Técnico/Científico --- Descomente os comandos \author[]{}, institute[]{} e \titlegraphic{}
+% \author[P. Autor(a), S. Autor(a), T. Autor(a)]{%% Autor(es): [curto] e {longo}
+  % \footnotesize%
+  % Primeiro(a) Autor(a)\inst{1}%
+  % \And Segundo(a) Autor(a)\inst{2}%
+  % \And Terceiro(a) Autor(a)\inst{3}%
+% }
+% \institute[UTFPR/<INST-EXT>]{%% Instituição(ões): [curto] e {longo}
+  % \inst{1,3}\utfprname, Ponta Grossa, Paraná, Brasil%
+  % \par\inst{2}<Instituição do(a) Autor(a) Externo(a)>, <Cidade>, <Estado>, <País>%
+  % \par e-mail(s): \email[1]{autor1@dominio}%
+                  % \sep\email[2]{autor2@dominio}%
+                  % \sep\email[3]{autor3@dominio}%
+% }
+% \titlegraphic{%% Logomarcas do evento
+  % \vspace*{-\baselineskip}%
+  % \eventlogos%
+% }
+%%%% Defesa de Trabalho Acadêmico --- Descomente os comandos \author[]{}, institute[]{} e \titlegraphic{}
+\author[R. Bahia]{%% Autor(a): [curto] e {longo}
+  Ruan de Medeiros Bahia%
+  \authormail{ruanmed@live.com}%
+  \advisor{Orientador: Prof. Dr. Rosalvo Oliveira Neto}%
+}
+\institute[UNIVASF/CECOMP]{%% Instituição: [curto] e {longo}
+  Universidade Federal do Vale do São Francisco (UNIVASF)%
+  \par Curso de Engenharia de Computação (CECOMP)
+}
+\titlegraphic{%% Logomarcas da instituição
+  \vspace*{-\baselineskip}%
+  \institutelogos%
+}
+\campus{PG}{Câmpus Ponta Grossa}%% Câmpus: {sigla} e {nome} --- Modo artigo
+\departamento[logo-da]{<DEPTO>}{%% Depto., Coord., Prog. ou Curso: [logo], {sigla} e {nome} --- Modo artigo
+  Departamento Acadêmico de <Nome do Depto.>%
+}
+\date[16 de agosto de 2019]{16 de agosto de 2019}%% Data: [curto] e {longo}
+
+%------------------------------------------------------------
+%The next block of commands puts the table of contents at the 
+%beginning of each section and highlights the current section:
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Sumário}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+
+%% Início do documento
+\begin{document}
+
+
+\mode<presentation>{%% Modo apresentação --- Páginas de título e de sumário
+  \frame{\titlepage}%
+  \begin{frame}{Sumário}{~}%
+  \tableofcontents%
+  \end{frame}%
+}
+
+\mode<article>{%% Modo artigo --- Página de título
+  \maketitle%
+  \thispagestyle{firstpagestyle}%
+}
+
+\section{Introdução}\label{sec:introdução}
+
+    \begin{frame}{\sectiontitle{sec:introdução}}{A era dos dados}
+        Evolução dos equipamentos computacionais permite a geração e coleta de grandes volumes de dados diariamente.
+        
+        \cite[p.~1]{Han:2011:DMC:1972541} afirmam que é comum dizer que vivemos na era na informação, no entanto, segundo eles, vivemos na era dos dados.
+        
+        \begin{block}{\textit{How Much Information?} 2003}
+            Estudo feito pela Universidade da Califórnia em Berkeley por \cite{lyman2003much}.
+            
+            Anualmente, em armazenamento digital, já eram gerados:
+        \begin{itemize}
+            \item 13,5 terabytes de notícias de jornal;
+            \item 5,5 terabytes de livros;
+            \item 440 exabytes de e-mails.
+        \end{itemize}
+        \end{block}
+    \end{frame}
+    
+    \begin{frame}{\sectiontitle{sec:introdução}}{Mineração de dados textuais}
+        \begin{columns}[t]
+        \column{0.475\textwidth}
+            A Mineração de Textos (MT) aborda o problema da coleta e análise de dados textuais. Deriva técnicas das seguintes áreas:
+            
+            \begin{itemize}
+                \item Mineração de dados;
+                \item Aprendizados de máquina;
+                \item Processamento de linguagem natural;
+                \item Recuperação de Informação (RI); e 
+                \item Gerenciamento do conhecimento.
+            \end{itemize}
+        \column{0.475\textwidth}
+            Aplicações da MT:
+            \begin{itemize}
+                \item \textbf{Classificação} de documentos;
+                \item Clusterização de documentos;
+                \item Sumarização de opiniões;
+                \item Acesso de dados dados biomédicos; e
+                \item Auxílio em investigações forenses.
+            \end{itemize}
+        \end{columns}
+        % Os dados textuais são considerados os tipos de dados que carregam mais informação pois derivam da linguagem natural.
+
+        
+        \begin{block}{Classificação de texto}
+            Segundo \cite[p.~7]{Jo2018TMCIBDC} e \cite[p.~299]{Zhai2016TDMA}:
+            \begin{itemize}
+                \item Classificação (ou categorização) é definida como o processo de designar uma, ou mais, categorias a cada objeto de texto, dentre categorias predefinidas, sendo que predominantemente é utilizado um conjunto de textos já classificados para treinamento.
+            \end{itemize}
+        \end{block}
+    \end{frame}
+    
+    \begin{frame}{\sectiontitle{sec:introdução}}{Tarefa de classificação de texto}
+        \input{tex/figure/zhai2016-figure-15-1-traduzida.tex}
+    \end{frame}
+    
+    \begin{frame}{\sectiontitle{sec:introdução}}{Tarefa de classificação de texto}
+        Processo de classificação de texto:
+        \begin{itemize}
+            \item Derivação de atributos;
+            \item Manejo de atributos (\textit{feature engineering});
+            \item Diferentes conjuntos de atributo impactam no desempenho dos classificadores de MT;
+            \item Criação de atributos pode melhorar a acurácia.
+        \end{itemize}
+        \begin{block}{Recuperação de Informação na Classificação}
+            \begin{itemize}
+                \item Técnicas de RI são utilizadas intensivamente no pré-processamento dos textos para as tarefas de MT;
+                \item Utilização de funções de ranqueamento de RI diretamente na criação de atributos é rara, somente foi encontrada as pesquisas de \cite{WEREN_MESTRADO_2014}.
+            \end{itemize}
+        \end{block}
+    \end{frame}
+    
+    \begin{frame}{\sectiontitle{sec:introdução}}{Recuperação de Informação}
+        Segundo \cite[p.~5--8]{Baeza-Yates2011}, a área de Recuperação de Informação abarca os seguintes processos aplicados sobre coleções de documentos:
+        \begin{itemize}
+            \item Armazenamento;
+            \item Indexação;
+            \item Recuperação; e
+            \item Ranqueamento de consultas.
+        \end{itemize}
+        
+        \begin{block}{Foco dos sistemas de RI}
+            Segundo \cite[p.~2, tradução nossa]{KowalskiIRAA201}:
+            \begin{itemize}
+                \item O objetivo principal de um sistema de Recuperação de Informação é minimizar a sobrecarga do usuário em localizar informação de valor. 
+                Na perspectiva do usuário, sobrecarga pode ser definido como o tempo que decorre para localizar a informação necessária.
+                O tempo inicia quando um usuário começa a interagir com o sistema e termina quando encontra os itens de interesse.
+            \end{itemize}
+        \end{block}
+    \end{frame}
+    
+    \begin{frame}{\sectiontitle{sec:introdução}}{Recuperação de Informação}
+        Recuperação de Informação:
+        \begin{itemize}
+            \item Área de estudo madura e bem desenvolvida;
+            \item Complexa.
+        \end{itemize}
+        
+        \begin{block}{Benefícios da utilização de ferramentas de RI já existentes}
+            \begin{itemize}
+                \item Implementar sistemas de RI que atendam os objetivos da área se torna dificultoso pela necessidade de otimização desses sistemas para atingir o estado da arte.
+                
+                \item É vantajoso usar ferramentas que subsidiem as tarefas de armazenamento, indexação, recuperação e ranqueamento da Recuperação de Informação.
+                
+                \item Facilidade no cálculo das funções de ranqueamento para criação de atributos derivados de RI em tarefas de MT.
+            \end{itemize}
+        \end{block}
+    \end{frame}
+    
+    \begin{frame}{\sectiontitle{sec:introdução}}{Objetivo geral}
+
+        \begin{block}{Objetivo geral}
+            Avaliar o desempenho de atributos oriundos de Recuperação de Informação para tarefas de Mineração de Textos.
+        \end{block}
+    \end{frame}
+    
+    \begin{frame}{\sectiontitle{sec:introdução}}{Objetivos específicos}
+        \begin{block}{Objetivos específicos}
+            \begin{itemize}
+        	\item Avaliar o ganho de desempenho de classificadores de Mineração de Texto com adição de atributos derivados da função de ranqueamento BM25 da Recuperação de Informação, em pelo menos 2 corpus de competições diferentes, utilizando medidas consolidadas na literatura;
+        	
+        	\item Reproduzir soluções disponíveis \textit{online} para os corpus selecionados, comprovando as medidas dos resultados das competições;
+        	
+            \item Elencar em qual dos corpus selecionados os atributos criados proporcionam maior ganho de desempenho de classificador;
+            
+            \item Comparar o desempenho computacional de ferramentas de armazenamento e indexação de textos:
+            \begin{itemize}
+                \item na questão de indexação;
+                \item na questão de consulta utilizando as implementações do BM25 nativas das ferramentas;
+            \end{itemize}
+            
+            \item Avaliar, empiricamente, a facilidade de instalação, utilização e integração das ferramentas de armazenamento e indexação selecionadas.
+            \end{itemize}
+        \end{block}
+    \end{frame}
+
+
+\section{Fundamentação Teórica}\label{sec:fundamentação-teórica}
+    
+    % \begin{frame}{\sectiontitle{sec:fundamentação-teórica}}{Subtítulo da seção ou do slide}
+    %     \begin{block}<+->{Exemplo de lista de itens}
+    %     \begin{itemize}
+    %     \item Item a.
+    %     \item Item b.
+    %     \item Item c.
+    %     \end{itemize}
+    %     \end{block}
+    %     \begin{block}<+->{Exemplo de lista de itens numerada}
+    %     \begin{enumerate}[<+-|alert@+>]
+    %     \item Item numerado 1.
+    %     \item Item numerado 2.
+    %     \item Item numerado 3.
+    %     \end{enumerate}
+    %     \end{block}
+    % \end{frame}
+    
+    \subsection{Recuperação de Informação}\label{subsec:RI}
+    
+    
+    \begin{frame}{\sectiontitle{subsec:RI}}{A área de estudo}
+        Desde o princípio dos registros físicos, os humanos tem uma certa preocupação com o armazenamento de informação e modos de obter informação, que é uma necessidade humana.
+        
+        \begin{block}{Evolução da transferência de informação}
+            \begin{itemize}
+                \item Consulta a outras pessoas;
+                \item Registros físicos em papeis e similares;
+                \item Meios digitais.
+            \end{itemize}
+        \end{block}
+        
+        % Devido ao volume enorme de conhecimento gerado pela humanidade é necessário otimizar a busca de informações específicas:
+        % \item Sistemas de classificação de áreas e subáreas do conhecimento
+        \begin{itemize}
+            \item Otimização da busca de informações específicas:
+            \begin{itemize}
+                \item Sistemas manuais de classificação de áreas e subáreas do conhecimento;
+            \end{itemize}
+            \item Ineficácia dos sistemas manuais:
+            \begin{itemize}
+                \item Sistemas mecânicos no início do século 20;
+                \item Sistemas computacionais na década de 1940.
+            \end{itemize}
+        \end{itemize}
+        % Ainda assim sistemas manuais se tornaram ineficazes, surgiram, no início do século 20, os primeiros sistemas mecânicas de recuperação de informação.
+        
+        % Sistemas computacionais introduzidos na década de 1940 utilizados para consulta rápida de informações armazenadas.
+        
+        Necessidade de estabelecer algoritmos que retornem informação relevante aos usuários dos sistemas de RI.
+    \end{frame}
+    
+    \begin{frame}{\sectiontitle{subsec:RI}}{A área de estudo}    
+        \begin{block}{Campo científico de Recuperação de Informação}
+            Segundo \cite[p.~1]{Manning2008IIR}, Recuperação de Informação (RI, do inglês \textit{Information Retrieval}) consiste de encontrar material (geralmente documentos) de natureza desestruturada (geralmente texto) que satisfaça uma necessidade de informação dentro de grandes acervos (geralmente armazenados em computadores).
+            \par
+            Preocupações iniciais da área, segundo \cite[p.~3]{Sanderson2012THIRR}:
+            \begin{enumerate}%[label=(\alph*)]
+                \item \textit{como indexar documentos}; e 
+                \item \textit{como recuperá-los}.
+            \end{enumerate}
+        \end{block}
+        \begin{itemize}
+            \item Início baseado nos sistemas de indexação manuais;
+            \item Migração para sistema baseado em palavras, Uniterm;
+            \item Prevalência da indexação por palavras.
+        \end{itemize}
+        % Baseou-se nos sistemas de indexação manuais já consolidados no campo bibliotecário, como o CDD.
+        
+        % No entanto foi demonstrado que um sistema baseado em palavras, como o sistema Uniterm, era melhor.
+        % A indexação por palavras prevaleceu.
+        
+    \end{frame}
+     
+    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Funcionamento de sistema de RI moderno}%
+        % \begin{columns}[t]%
+            % \column{0.475\textwidth}%
+            \input{tex/figure/baeza2013-figura-1.3.tex}%
+        % \end{columns}
+    \end{frame}
+    
+    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Vocabulário}
+        \begin{itemize}
+            \item Termo: sinônimo de palavra;
+            \item Documento: objeto digital que contém dados textuais, contém termos;
+            \item Coleção de documentos: o conjunto de documentos disponíveis num sistema de RI;
+            \item Consulta: sequência de termos que representam uma necessidade de informação.
+        \end{itemize}
+    \end{frame}
+    
+    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Métodos booleanos}
+        \input{tex/table/matriz-incidencia-termo-documento.tex}
+    \end{frame}
+    
+    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Ranqueamento}
+        Recuperação ranqueada:
+        \begin{itemize}
+            \item Estabelece uma pontuação para cada resultado;
+            \item Retorno dos resultados de forma ordenada.
+        \end{itemize}
+    
+        Contabilização do número de aparições de cada um dos termos no documento.
+        \begin{itemize}
+            \item Número de ocorrências do termo \textit{t} em um documento \textit{d}:
+            \begin{equation}\label{eq:tf-td}
+                \text{tf}_{\text{\textit{t},\textit{d}}}
+            \end{equation}
+            \item Relevância dos termos na coleção de documentos:
+            \begin{equation}
+                \label{eq:inverse-document-frequency}
+                \text{idf}_{\text{\textit{t}}} = \log{\frac{N}{\text{df}_{\text{\textit{t}}}}}
+            \end{equation}
+            
+            \begin{equation}
+                \label{eq:tf-idf}
+                \text{tf-idf}_{\text{\textit{t},\textit{d}}}  = \text{tf}_{\text{\textit{t},\textit{d}}} \times \text{idf}_{\text{\textit{t}}}.
+            \end{equation}
+        \end{itemize}
+        
+    \end{frame}
+   
+    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Recuperação ranqueada: exemplo de tf--idf}
+        \begin{columns}[t]
+            \column{0.67\textwidth}
+            \input{tex/table/tf-idf-exemplo.tex}
+            
+            \column{0.30\textwidth}
+            \begin{equation}
+                \label{eq:pontuação-simples-tf-idf}
+                \text{Pontuação(\textit{q},\textit{d})} = \sum_{\textit{t} \in \textit{q}}^{} \text{tf-idf}_{\text{\textit{t},\textit{d}}}.
+            \end{equation}
+            
+            \vspace{1cm}
+            
+            $\text{Pontuação(\{\textit{auto},\textit{car}\},D\textsubscript{x})}$ para cada documento:
+            \begin{itemize}
+                \setlength\itemsep{-0.2em}
+                \item D\textsubscript{1}: 50,79
+                \item D\textsubscript{2}: 75,24
+                \item D\textsubscript{3}: 39,60
+            \end{itemize}
+        \end{columns}
+    \end{frame}
+    
+    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Recuperação ranqueada: Modelo de espaço vetorial}
+        Modelo de espaço vetorial:
+        \begin{itemize}
+            \item Surge a partir das limitações do modelo booleano;
+        
+            \item Representação dos documentos em um espaço vetorial comum.
+        \end{itemize}
+        
+        
+        \begin{block}{Vantagens do modelo vetorial}
+            \begin{itemize}
+                \item Melhora da qualidade dos resultados;
+                
+                \item Capacidade de correspondência parcial;
+                
+                \item Organização dos resultados pelo grau de similaridade com a consulta; e
+                
+                \item Normalização dos tamanhos dos documentos.
+            \end{itemize}
+        \end{block}
+    \end{frame}
+    
+    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Recuperação ranqueada: Modelo de espaço vetorial}
+        Representação dos documentos e das consultas:
+        \begin{itemize}
+            \item Vetores $t$-dimensionais;
+            \item Pesos de cada termo são associados.
+        \end{itemize}
+        \begin{equation}
+            \label{eq:vetor-pesos-documento}
+    		\vec{d_j} = (w_{1,j}, w_{2,j}, \cdots , w_{t,j})
+        \end{equation}
+        \begin{equation}
+            \label{eq:vetor-pesos-consulta}
+    		\vec{q} = (w_{1,q}, w_{2,q}, \cdots , w_{t,q})
+        \end{equation}
+        
+        \begin{block}{Padrão de peso mais utilizado}
+            \begin{equation}
+                \text{tf-idf}_{\text{\textit{t},\textit{d}}}
+            \end{equation}
+            
+            Segundo \cite[p.~77--78]{Baeza-Yates2011}, como $w_{i,q}$ é o peso associado com o par termo-consulta $(k_i, q)$, a aplicação do $\text{tf-idf}_{\text{\textit{t},\textit{d}}}$ vira $\text{tf-idf}_{k_i\text{,}\textit{q}}$ para os pesos associados à uma consulta $q$.
+        \end{block}
+    \end{frame}
+    
+    
+    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Recuperação ranqueada: exemplo do modelo vetorial}
+        \begin{columns}[t]
+            \column{0.50\textwidth}
+            \input{tex/figure/cosine-sim.tex}
+            
+            \column{0.45\textwidth}
+            \vspace{1cm}
+            \begin{block}{Função de ranqueamento}
+            \begin{equation}
+                \label{eq:pontuação-similaridade-cosseno}
+        		\text{Pontuação\_COS}(\vec{d_j}, \vec{q}) = \frac{\vec{d_j} \bullet \vec{q} }{ \norm{\vec{d_j}} \times \norm{\vec{q}} }
+            \end{equation}
+            \end{block}
+            \vspace{1cm}
+
+        \end{columns}
+    \end{frame}
+    
+    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Recuperação ranqueada: modelo probabilístico}
+        Modelos probabilísticos:
+        \begin{itemize}
+            \item Partem do princípio da incerteza da relevância dos documentos retornados (PRP);
+            \item Função de ranqueamento definida estatisticamente como $P(R = 1| d,q)$ onde $R \in \{0, 1\}$ é uma variável binária aleatória que denota a relevância.
+        \end{itemize}
+        
+        Segundo \cite[p.~333]{robertson_probabilistic_2010}, o 
+        princípio do ranqueamento probabilístico (PRP) é a base para o chamado \textit{Framework} de Relevância Probabilística o qual, por sua vez, deu origem aos: 
+        \begin{itemize}
+            \item Modelo de independência binária (BIM);
+            \item Modelos de \textit{feedback} de relevância;
+            \item BM25; e a
+            \item Diversas variações do BM25.
+        \end{itemize}
+    \end{frame}
+    
+    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Recuperação ranqueada: modelo probabilístico - Okapi BM25}
+        Função de ranqueamento Okapi BM25:
+        \begin{itemize}
+            \item Evolução das implementações do BIM;
+            \item Integra conceitos aplicados no modelo vetorial:
+                \begin{itemize}
+                    \item Frequência dos termos;
+                    \item Normalização de tamanho; e
+                    \item Correspondência parcial.
+                \end{itemize}
+            \item Alguns autores, como \cite[p.~111]{Zhai2016TDMA}, apresentam a função BM25 junto às dos modelos vetoriais devido à sua similaridade com estes.
+        \end{itemize}
+  
+        \begin{block}{Função de ranqueamento BM25}
+            \begin{equation}
+                \label{eq:okapi-bm25}
+        		\text{Pontuação\_BM25}(d_j, q) = \sum_{t \in q} \text{idf}_{\text{\textit{t}}} 
+        		\cdot
+        		\frac{(k_1 + 1) \text{tf}_{t,d}}{k_1((1-b)+b \times (\frac{L_d}{L_{\text{avg}}})) + \text{tf}_{t,d}} 
+            \end{equation}
+        \end{block}
+        Os termos $\text{tf}_{t,d}$ e $\text{idf}_{\text{\textit{t}}}$ tem o mesmo significado já apresentado nos modelos anteriores.
+        Os termos $b$ e $k_1$ são parâmetros de refinamento. 
+    \end{frame}
+    
+    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Recuperação ranqueada: modelo probabilístico - Okapi BM25}
+        \begin{block}{Função de ranqueamento BM25}
+            \begin{equation}
+                \label{eq:okapi-bm25}
+        		\text{Pontuação\_BM25}(d_j, q) = \sum_{t \in q} \text{idf}_{\text{\textit{t}}} 
+        		\cdot
+        		\frac{(k_1 + 1) \text{tf}_{t,d}}{k_1((1-b)+b \times (\frac{L_d}{L_{\text{avg}}})) + \text{tf}_{t,d}} 
+            \end{equation}
+        \end{block}
+        \begin{itemize}
+            \item $\text{tf}_{t,d}$: contagem do número de ocorrências do termo $t$ no documento $d$;
+            
+            \item $\text{idf}_{\text{\textit{t}}}$: peso de Robertson/Spark Jones dado pela seguinte fórmula:
+            \begin{equation}
+                \label{eq:peso-rsj-adaptado}
+        		\text{idf}_{\text{\textit{t}}} = \log{\frac{N-\text{df}_{\text{\textit{t}}}+\frac{1}{2}}{\text{df}_{\text{\textit{t}}} + \frac{1}{2} }}.
+            \end{equation}
+            Mas pode ser simplificado para o valor já apresentado nos modelos anteriores;
+            
+            \item $L_{\text{avg}}$: tamanho médio dos documentos na coleção inteira;
+            
+            \item $L_d$: tamanho do documento;
+            
+            \item $b$ ($0 \leq b \leq 1$): controle do grau de normalização por tamanho de documento. Usa como referência os valores de $L_{\text{avg}}$ e $L_d$;
+            
+            \item $k_1$ ($0 \leq k_1 \leq \infty$): efeito da correção de frequência dos termos presente na fórmula.
+        \end{itemize}
+    \end{frame}
+    
+    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Recuperação ranqueada: modelo probabilístico - Okapi BM25}
+        Consultas com muitos termos, e repetição destes, podem ser consideradas também pela função Okapi BM25 com a adição de um fator de ajuste $k_3$.
+        
+        \begin{block}{Função de ranqueamento BM25 adaptada para termos da consulta}
+            \begin{equation}
+                \label{eq:okapi-bm25-tf-consulta}
+        		\text{Pontuação\_BM25}(d_j, q) = 
+        		\sum_{t \in q} 
+        		\Bigg[ \log{\frac{N}{\text{df}_{t}}} \Bigg]
+        		\cdot 
+        		\frac{(k_1 + 1) \text{tf}_{t,d}}{k_1((1-b)+b \times (\frac{L_d}{L_{\text{avg}}})) + \text{tf}_{t,d}} \cdot 
+        		\frac{(k_3+1) \text{tf}_{t,q}}{k_3 + \text{tf}_{t,q}}
+            \end{equation}
+        \end{block}
+        \begin{itemize}
+            \item Parâmetros de refinamento $b$, $k_1$ e $k_3$ são definidos para otimizar o desempenho na recuperação em uma coleção de teste.
+            \item Valores experimentais:
+                \begin{itemize}
+                    \item $k_1$ e $k_3$: valores entre $1.2$ e $2$;
+                    \item $b = 0.75$ ou valores entre $0.5$ e $0.8$.
+                \end{itemize}
+        \end{itemize}
+    \end{frame}
+    
+    \subsection{Mineração de Texto}\label{subsec:MT}
+    
+    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:MT}}{Extração do conhecimento de dados textuais}
+        \begin{columns}[t]
+        \column{0.45\textwidth}
+        
+        A Mineração de Textos (MT) é definida como o processo de extrair conhecimento implícito de dados textuais \cite{Jo2018TMCIBDC,Feldman:2006:TMH:1076381}.
+        
+        \begin{itemize}
+            \item Tratada como \textit{knowledge discovery in text} por alguns autores, \cite{Kodratoff:1999:KDT:646358.689959} e \cite{Feldman:1995:KDT:3001335.3001354}.
+            
+            \item Recebe suporte direto da Mineração de Dados.
+        
+            \item Mineração de Dados é somente uma parte do processo de descoberta de conhecimento \cite[p.~6]{Han:2011:DMC:1972541}.
+        \end{itemize}
+        
+        \column{0.45\textwidth}
+        \begin{block}{Processo de descoberta de conhecimento em dados}
+            Composto pelas seguintes etapas, segundo \cite[p.~6--7]{Han:2011:DMC:1972541}:
+            \begin{enumerate}
+                \item \textbf{Limpeza dos dados}; %: remoção de ruído e dados inconsistentes;
+                
+                \item \textbf{Integração dos dados}; %: combinação de múltiplas fontes de dados;
+                
+                \item \textbf{Seleção dos dados}; %: dados relevantes para a tarefa de análise são recuperados do banco de dados;
+                
+                \item \textbf{Transformação dos dados}; %: dados são transformados e consolidados em formas apropriadas para mineração sendo realizadas, por exemplo, ações de agregação ou resumo;
+                
+                \item \textbf{Mineração dos dados}; %: métodos inteligentes são aplicados para extrair padrões de dados;
+                
+                \item \textbf{Avaliação de padrões}; e %: são identificados os padrões que realmente tão interessantes para representar o conhecimento baseado em medidas de nível de interesse;
+                \item \textbf{Apresentação do conhecimento}. %: o conhecimento minerado é apresando aos usuários por meio de técnicas de visualização e representação de conhecimento.
+            \end{enumerate}
+        \end{block}
+        \end{columns}
+    \end{frame}
+    
+    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:MT}}{O processo de descoberto do conhecimento (KDD)}
+        \input{tex/figure/han2011-figure-1-4-mineracao-dados.tex}
+    \end{frame}
+    
+    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:MT}}{Pré-processamento}
+        \begin{itemize}
+            \item Mineração de Dados assume que os dados já estão processados.
+            \begin{itemize}
+                \item Pré-processamento do KDD direcionado à limpeza e integração dos dados, etapas 1 e 2.
+            \end{itemize}
+            
+            \item Mineração de Texto trabalho com dados desestruturados.
+                \begin{itemize}
+                    \item Pré-processamento focado em mais extração de atributos, etapas 3 e 4.
+                \end{itemize}
+        
+            \item O pré-processamento da MT utiliza de técnicas da:
+            \begin{itemize}
+                \item Recuperação de Informação;
+                \item Extração de informação; e
+                \item Linguística computacional.
+            \end{itemize}
+            para transformar as coleções de documentos desestruturados em dados intermediários cuidadosamente estruturados \cite[p.~2--3]{Feldman:2006:TMH:1076381}.
+        
+            \item Estrutura intermediária definida por um modelo representacional dos documentos de texto composto por um conjunto de atributos.
+        \end{itemize}
+    \end{frame}
+    
+    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:MT}}{Diferença entre MT e RI}
+        Apesar da Mineração de Texto utilizar de técnicas da Recuperação de Informação, ambos são campos independentes com objetivos diferentes.
+
+        \begin{block}{Diferença entre MT e RI}
+            \cite[p.~4, tradução nossa]{Jo2018TMCIBDC} ressalta as diferenças:
+            \begin{itemize}
+                \item A saída da mineração de dados é o conhecimento implícito que é necessário diretamente para a tomada de decisões, enquanto a saída da recuperação é composta por alguns dos itens de dados que são relevantes para a consulta dada. 
+                Por exemplo, no domínio de preços de ações, a previsão dos preços futuros de ações é uma tarefa típica da mineração de dados, enquanto que obter alguns dos preços de ações passadas e atuais é tarefa da recuperação de informação. 
+                Observe que a certeza perfeita nunca existe na mineração de dados, em comparação com a recuperação. 
+                A computação mais avançada para obter conhecimento dos dados brutos, chamada de síntese, é necessária para executar as tarefas de mineração de dados.
+            \end{itemize}
+        \end{block}
+    \end{frame}
+    
+    \begin{frame}{\sectiontitle{subsec:MT}}{Diferença entre MT e RI}
+        \input{tex/table/mining-vs-retrieval.tex}
+    \end{frame}
+    
+    \begin{frame}{\sectiontitle{subsec:MT}}{Corpus}
+        \begin{itemize}
+            \item Vários formatos de texto são utilizados para o processamento computacional de texto:
+            \begin{itemize}
+                \item MS Word com extensão ``doc'';
+                \item MS PowerPoint com extensão ``ppt'';
+                \item MS Excel com o ``xls'';
+                \item PDF para transferência entre computadores.
+            \end{itemize}
+            \item Texto simples, ou texto sem formatação, é o formato mais elementar de texto que é feito por um editor de texto.
+            
+            \item Corpus é uma coleção de textos simples, referenciada pelo diretório que contém os arquivos de texto \cite[p.~6]{Jo2018TMCIBDC}.
+            
+            \item \cite[p.~9]{KwartlerTMPWR2017} considera como corpus qualquer corpo, ou conjunto, grande de texto organizado.
+        \end{itemize}
+    \end{frame}
+    
+    \begin{frame}{\sectiontitle{subsec:MT}}{Corpus: exemplo de arquivo de texto simples}
+        \input{tex/figure/texto-simples.tex}
+    \end{frame}
+    
+    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:MT}}{Corpus: exemplo de arquivo XML}
+        \input{tex/figure/arquivo-xml.tex}
+    \end{frame}
+    
+    
+    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:MT}}{Tarefas da Mineração de Dados}
+        \begin{columns}[t]
+        \column{0.30\textwidth}
+        Segundo \cite[p.~7]{TanIDM2014} e \cite[p.~15]{Han:2011:DMC:1972541} são separadas em:
+        \begin{itemize}
+            \item Descritivas; e
+            \item Preditivas.
+        \end{itemize}
+        
+        As tarefas descritivas são de:
+        \begin{itemize}
+            \item Agrupamento;
+            \item Associação;
+            \item Descrição; e
+            \item Detecção de anomaliaas.
+        \end{itemize}
+        
+        \column{0.65\textwidth}
+        \input{tex/figure/tarefas-principais-mineracao-dados.tex}
+        \end{columns}
+    \end{frame}
+    
+    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:MT}}{Tarefas da Mineração de Dados: Classificação binária}
+        \begin{itemize}
+            \item O problema da classificação consiste na aprendizagem da estrutura dos exemplos do conjunto de dados, os quais estão classificados em grupos chamados de categorias ou classes \cite[p.~285]{Aggarwal_DMTT_2015}.
+            
+            \item \cite[p.~146, tradução nossa]{TanIDM2014} dizem que ``classificação é a tarefa de aprender uma função objetivo $f$ que mapeia cada conjunto de atributos $x$ a um rótulo de classe predefinido $y$''.
+            
+            \item Segundo \cite[p.~286]{Aggarwal_DMTT_2015}, a maior parte dos algoritmos de classificação possui duas fases:
+            \begin{enumerate}
+                \item \textbf{Fase de treinamento};
+                \item \textbf{Fase de teste};
+            \end{enumerate}
+            
+            \item A classificação binária é o caso mais simples das tarefas de classificação, pois nele só existem duas possibilidades de rótulo de classe e cada objeto de dados pertence, exclusivamente, a uma das classes.
+        \end{itemize}
+    \end{frame}
+    
+    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:MT}}{Engenharia de Atributos}
+        \begin{itemize}
+            \item \cite{ZhengFEML2018} chamam de \textit{manejo de atributos} o processo para extrair atributos passíveis de serem utilizados por classificadores da mineração de dados.
+            
+            \item \cite[p.~3, tradução nossa]{DongFEMLDA2018} definem \textit{feature engineering} como uma área que abrange ``os tópicos de transformação de atributos, geração de atributos, extração de atributos, seleção de atributos, análise e avaliação de atributos, metodologias de manejo generalista e automatizado de atributos, e aplicações do manejo de atributos''.
+            
+            Os tópicos da engenharia de atributos são:
+            \begin{itemize}
+                \item \textbf{Transformação de atributos};
+                
+                \item \textbf{Geração de atributos};
+                
+                \item \textbf{Seleção de atributos};
+                
+                \item \textbf{Metodologias de manejo generalista e automatizado de atributos};
+                
+                \item \textbf{Aplicações do manejo de atributos}.
+            \end{itemize}
+        \end{itemize}
+        
+    \end{frame}
+    
+    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:MT}}{Engenharia de Atributos: Atributos comuns para documentos}
+        Os tipos de atributos mais utilizados para representar documentos, segundo  \cite[p.~5--7]{Feldman:2006:TMH:1076381}:
+        \begin{itemize}
+            \item \textbf{Caracteres}: são as letras, números, e caracteres especiais presentes nos documentos utilizados para construir a semântica do mesmo;
+            
+            \item \textbf{Palavras}: são símbolos linguísticos nativos do espaço de atributos de um documento. 
+            Atributos a nível de palavra geralmente são palavras únicas selecionadas de um documento nativo, e também é possível que sejam utilizados todas as palavras de um documento para representá-lo;
+            
+            \item \textbf{Termos}: são palavras únicas e frases com mais de uma palavra selecionadas de um corpus de documentos nativos por meio de técnicas específicas para extração de termos;
+            
+            \item \textbf{Conceitos}: são os atributos gerados de modo manual, baseado em regras, ou via categorização híbrida feita no pré-processamento. 
+            Por exemplo, um documento sobre carros esportivos pode não incluir a palavra ``automóvel'', mas este conceito pode ser utilizado para identificar e representar esse documento.
+        \end{itemize}
+        
+    \end{frame}
+    
+    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:MT}}{Engenharia de Atributos: Criação de atributos}
+        A criação de atributos consiste em derivar novos conjuntos de atributos que capturem, de forma mais efetiva, a informação carregada pelos dados \cite[p.~55]{TanIDM2014}.
+        
+        Metodologias de criação de atributos apresentadas por \cite[p.~55--57]{TanIDM2014}:
+        \begin{itemize}
+            \item \textbf{Extração de atributos}: a criação de um novo conjunto de atributos a partir dos dados brutos.
+            
+            \item \textbf{Mapeamento dos dados para um novo espaço}: mudar completamente a visualização dos dados.
+            
+            \item \textbf{Construção de atributos}: os atributos presentes nos dados possuem a informação necessária para o processo de mineração, mas não estão na forma adequada, assim novos atributos podem ser construídos na forma adequada. 
+        \end{itemize}
+        
+    \end{frame}
+    
+    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:MT}}{Medidas de avaliação de classificadores}
+        \begin{columns}[t]
+            \column{0.35\textwidth}
+            \vspace{0.3cm}
+            \begin{itemize}
+                \item Verdadeiros positivos (\textit{TP});
+                
+                \item Verdadeiros negativos (\textit{TN});
+                
+                \item Falsos positivos (\textit{FP});
+                
+                \item Falsos negativos (\textit{FN}).
+            \end{itemize}
+            
+            \column{0.62\textwidth}
+            \input{tex/table/matriz-confusao.tex}
+        \end{columns}
+    \end{frame}
+    
+        \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:MT}}{Medidas de avaliação de classificadores}
+        \begin{columns}[t]
+            \column{0.30\textwidth}
+            \begin{itemize}
+                \item Precisão ($p$);
+                
+                \item Revocação ($r$);
+                
+                \item $F$-\textit{score};
+                
+                \item Acurácia ($acc$);
+                
+                \item $F_\beta{}$.
+            \end{itemize}
+            
+            \column{0.65\textwidth}
+            
+            \begin{equation}
+                \label{eq:medida-precisão}
+        		p = 
+        		\frac{\textit{TP}}{\textit{TP} + \textit{FP}}
+        		= \frac{\textit{TP}}{P`}
+            \end{equation}
+            
+            \begin{equation}
+                \label{eq:medida-revocação}
+        		r = 
+        		\frac{\textit{TP}}{\textit{TP} + \textit{FN}}
+        		= \frac{\textit{TP}}{P}
+            \end{equation}
+            
+            \begin{equation}
+                \label{eq:medida-f-score}
+        		F = 
+        		\frac{2 \times p \times r}{p + r}
+            \end{equation}
+            
+            \begin{equation}
+                \label{eq:medida-acurácia}
+        		acc = 
+        		\frac{\textit{TP} + \textit{TN}}{P + N}
+            \end{equation}
+            
+            \begin{equation}
+                \label{eq:medida-f-beta}
+        		F_\beta{} = 
+        		\frac{(1 + \beta{}^2) \times p \times r}{\beta{}^2 \times p + r}
+            \end{equation}
+        \end{columns}
+    \end{frame}
+    
+\section{Material e Métodos}\label{sec:matmet}
+
+    \begin{frame}{\sectiontitle{sec:matmet}}{Metodologia proposta}
+        \begin{columns}[t]
+            \column{0.30\textwidth}
+            A metologia proposta para avaliação do desempenho dos atributos criados consiste dos seguinte passos:
+            
+            \begin{enumerate}
+                \item \textbf{Corpus para Avaliação}
+                \item \textbf{Armazenamento e Indexação em  SGBD NoSQL}
+                \item \textbf{Transformação dos dados com adição dos atributos de RI}
+                \begin{enumerate}
+                    \item \textbf{Consultas}
+                \end{enumerate}
+                \item \textbf{Avaliação do Modelo}
+                
+                \item \textbf{Mineração dos Dados}
+            \end{enumerate}
+            
+            \column{0.65\textwidth}
+            \input{tex/figure/diagrama-metodologia.tex}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}{\sectiontitle{sec:matmet}}{Corpus para avaliação}
+        Definidos dois corpus de competições promovidas pela PAN\footnote{Sigla da organização que se originou do \textit{International Workshop on Plagiarism Analysis, Authorship Identification, and Near-Duplicate Detection} em 2007 \cite{PAN_Workshop_2007}.}:
+        \begin{itemize}
+            \item \textbf{DB\_AUTHORPROF - \textit{Author Profiling - PAN @ CLEF 2018}:} Uma tarefa da competição \textit{CLEF 2018} promovida pela PAN na classe de análise de autoria, a qual foca na identificação de gênero no Twitter em três linguagens distintas, inglês, espanhol, e árabe \cite{PAN_APCLEF_2018}.
+            
+            \item \textbf{DB\_HYPARTISAN - \textit{Hyperpartisan News Detection - PAN @ SemEval 2019 Task 4}:} Esta tarefa da competição \textit{SemEval 2019} promovida pela PAN consiste em, dada uma notícia, avaliar se esta segue uma argumentação hiperpartidária, que significa verificar se ela possui fidelidade cega, preconceituosa, ou irracional a um partido, grupo, causa, ou pessoa \cite{PAN_HND_2019}.
+        
+        \end{itemize}
+        
+        Ambos se tratam de problemas de classificação binária, a classe real é a presença ou ausência de hiperpartidarismo em cada exemplo, ou masculino e feminino no primeiro corpus.
+        
+        Os dois corpus possuem soluções de participantes nas competições da PAN que tem seu código fonte aberto e disponível em repositórios online.
+    \end{frame}
+    
+    \begin{frame}{\sectiontitle{sec:matmet}}{Corpus para avaliação: soluções encontradas em repositórios na internet}
+        \input{tex/table/solutions-authorprof.tex}
+        
+        \input{tex/table/solutions-hyperpartisan.tex}
+    \end{frame}
+    
+    \begin{frame}{\sectiontitle{sec:matmet}}{Armazenamento e indexação}
+        Selecionadas as seguintes ferramentas de armazenamento e indexação:
+        \begin{itemize}
+            \item \textbf{TOOL\_ELASTIC}: Elasticsearch 7.2 é o mecanismo distribuído de análise e busca baseado no Apache Lucene\footnote{Biblioteca de software livre e de código aberto para ferramentas de buscas em texto, escrita originalmente em Java \cite{LUCENE_DOCUMENTATION_2019}.}, desenvolvido em Java, e possui código aberto sob diversas licenças sendo a principal a Licença Apache\footnote{Licença de software livre permissiva de autoria da Apache Software Foundation (ASF) \cite{NEWMEDIA_OPENGUIDE_2015}.} \cite{ELASTIC_GitHub_2019, ELASTIC_REFERENCE_INTRO_2019}.
+            
+            \item \textbf{TOOL\_ARANGO}: ArangoDB v3.4.6 é um banco de dados multi-modelo nativo, desenvolvido principalmente em C++ com extensões em JavaScript, que possui código-fonte aberto e possibilita modelos de dados flexíveis, tanto para documentos, gráficos, e valores-chave \cite{ARANGODB_DOC_2019, ARANGODB_GitHub_2019}.
+            
+            \item \textbf{TOOL\_ZETTAIR}: Zettair v0.9.3 é um mecanismo de busca de código-fonte aberto escrito na linguagem C, projetado para ser compacto e pesquisar rapidamente em texto, desenvolvido pelo Grupo de Mecanismos de Busca do Instituto Real de Tecnologia de Melbourne em 2009 \cite{ZETTAIR_HOME_2009}. 
+        \end{itemize}
+        
+        Todas as três ferramentas implementam a função de ranqueamento BM25.
+    \end{frame}
+    
+    \begin{frame}{\sectiontitle{sec:matmet}}{Atributos de RI sugeridos}
+        \begin{columns}[t]
+            \column{0.38\textwidth}
+            Os atributos são fundamentados na investigação de \cite{WEREN_MESTRADO_2014}. 
+            
+            Pressuposto:
+            \begin{itemize}
+                \item Os autores de um mesmo grupo de gênero ou idade tendem a usar termos semelhantes, e que a distribuição desses termos difere entre os grupos;
+                \item Generalizado para outras classes de identificação de autoria, como por exemplo que autores de artigos hiperpartidários tendem a usar termos semelhantes, e a distribuição desses termos difere de autores não hiperpartidários.
+            \end{itemize}
+            
+            \column{0.62\textwidth}
+            \input{tex/figure/diagrama-consulta-geracao-atributo.tex}
+        \end{columns}
+    \end{frame}
+    
+    \begin{frame}{\sectiontitle{sec:matmet}}{Atributos de RI sugeridos}
+        \input{tex/table/lista-atributos-sugeridos.tex}
+    \end{frame}
+    
+    \begin{frame}{\sectiontitle{sec:matmet}}{Medidas para avaliação de desempenho}
+        \vspace{0.2cm}
+        \begin{columns}[t]
+            \column{0.45\textwidth}
+            Medidas de desempenho computacional das ferramentas de armazenamento e indexação:
+            \begin{itemize}
+                \item \textbf{TIME\_INDEX}: Tempo de execução para indexar o conjunto de treinamento de cada um dos corpus para avaliação elencados;
+                
+                \item \textbf{TIME\_QUERY}: Tempo para consulta de cada exemplo do conjunto de teste e geração dos atributos sugeridos para o item específico.  
+            \end{itemize}
+            
+            \column{0.45\textwidth}
+            Medidas de desempenho de classificador:
+            \begin{itemize}
+                \item \textbf{CLF\_ACC}: Acurácia do classificador no conjunto de validação.
+                \item \textbf{CLF\_F1}: $F_1$-score do classificador no conjunto de validação.
+            \end{itemize}
+        \end{columns}
+    \end{frame}
+
+    \subsection{Cronograma}\label{subsec:cronograma}
+    \begin{frame}{\sectiontitle{subsec:cronograma}}{}
+        \input{tex/table/cronograma.tex}
+    \end{frame}
+    
+\mode<presentation>{%% Modo apresentação --- Referências
+  \section{Referências}\label{sec:ref}%
+  \begin{frame}[allowframebreaks]{\sectiontitle{sec:ref}}{~}%
+    \printbibliography[heading = none]%
+  \end{frame}%
+}
+
+\mode<article>{\printbibliography}%% Modo artigo --- Referências
+
+\section*{Agradecimentos}\label{sec:agrad}
+
+    % \begin{frame}[c]{\sectiontitle{sec:agrad}}{\mode<presentation>{~}}
+    %     Pelo apoio recebido para o desenvolvimento deste trabalho e a participação neste evento:
+    %     \mode<presentation>{\vfill}%% Modo apresentação --- Espaçamento vertical
+    %     \begin{center}
+    %     \includegraphics[height = \logoheight]{./Logos/logo-capes}
+    %     \hfill
+    %     \includegraphics[height = \logoheight]{./Logos/logo-cnpq}
+    %     \hfill
+    %     \includegraphics[height = \logoheight]{./Logos/logo-fa}
+    %     \mode<presentation>{\vfill}%% Modo apresentação --- Espaçamento vertical
+    %     \includegraphics[height = \logoheight]{./Logos/logo-utfpr}
+    %     \end{center}
+    % \end{frame}
+    
+    \mode<presentation>{%% Modo apresentação --- Agradecimentos
+    \begin{frame}[c]{\sectiontitle{sec:agrad}}{~}%
+        \vfill%
+        \begin{center}%
+          \begin{Huge}%
+            Por sua atenção!!!%
+          \end{Huge}%
+        \end{center}%
+        \vfill%
+        % \begin{block}{Declaração de Responsabilidade}%
+        %   O(s) autor(es) é(são) o(s) único(s) responsável(eis) pelo material impresso contido neste documento.%
+        % \end{block}%
+    \end{frame}%
+    }
+    
+    \mode<article>{%% Modo artigo --- Declaração de responsabilidade
+      \section*{Declaração de Responsabilidade}%
+      O(s) autor(es) é(são) o(s) único(s) responsável(eis) pelo material impresso contido neste documento.%
+    }
+
+%% Fim do documento
+\end{document}

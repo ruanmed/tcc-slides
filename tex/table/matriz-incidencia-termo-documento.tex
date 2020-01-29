@@ -1,0 +1,34 @@
+\begin{table}[H]
+    \centering
+    \caption{Matriz de incidência de termo-documento do livro \textit{Shakespeare’s Collected Works}. Cada elemento (i, j) da matriz é 1 se a peça de teatro na coluna j contém a palavra na linha i, caso contrário o elemento é 0.}
+    \begin{adjustbox}{max width=0.8\textwidth}
+        \begin{tabular}{|c|c|c|c|c|c|c|c}
+            \hline
+            \diagbox{Palavra}{
+                \raisebox{-1.27cm}{
+                    \rotatebox{90}{
+                        \parbox{1.6cm}{\centering Peça \\ de teatro}
+                    }
+                }
+            } 
+            & \makecell{Antony \\ and \\ Cleopatra} 
+            & \makecell{Julius \\ Caesar} 
+            & The Tempest 
+            & Hamlet 
+            & Othello 
+            & Macbeth 
+            & ... 
+            \\ \hline
+            Antony     & 1 & 1 & 0 & 0 & 0 & 1 & \\
+            Brutus     & 1 & 1 & 0 & 1 & 0 & 0 & \\
+            Caeasar    & 1 & 1 & 0 & 1 & 1 & 1 & \\
+            Calpurnia  & 0 & 1 & 0 & 0 & 0 & 0 & \\
+            Cleopatra  & 1 & 0 & 0 & 0 & 0 & 0 & \\
+            mercy      & 1 & 0 & 1 & 1 & 1 & 1 & \\
+            worser     & 1 & 0 & 1 & 1 & 1 & 0 & \\
+            ...        & & & & & & & 
+        \end{tabular}
+    \end{adjustbox}
+    \text{\footnotesize \textbf{Fonte:} Tabela adaptada de \cite[p.~4]{Manning2008IIR}.}
+    \label{tab:matriz-incidência-termo-documento}
+\end{table}

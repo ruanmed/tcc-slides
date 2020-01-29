@@ -1,0 +1,25 @@
+\begin{figure}[H]
+    \centering
+    \caption{O cosseno de $\theta$ é adotado como $\text{Pontuação}(\vec{d_j},\vec{q})$. }
+    \begin{center}
+        \begin{tikzpicture}[scale=1.25]
+            \coordinate[label=below  left:""] (A) at (-1.5cm,-1.cm);
+            \draw[-Stealth]
+                (A) to ["",sloped] ++ ({atan(2/3)}:{sqrt(4+9)})  coordinate[label=above right:$d_j$] (B);
+            \draw[-Stealth] 
+                (A) to ["" ']      ++ (0:3)                      coordinate[label=below right:q] (C);
+            \pic ["$\theta$", draw, angle radius = 12mm, angle eccentricity=1.3]     
+                {angle = C--A--B};
+        \end{tikzpicture}
+    \end{center}
+    \vspace{-0.0cm}
+    \text{\footnotesize \textbf{Fonte:} Baseado na figura disponível em \cite[p.~78]{Baeza-Yates2011}.}
+    \label{fig:similaridade-cosseno}
+\end{figure}
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=1.0\textwidth]{img/estrategico.png}
+%     \caption{Planejamento estratégico da BSS Tecnologias.}
+%     \label{fig:similaridade-cosseno}
+% \end{figure}

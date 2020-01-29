@@ -1,0 +1,316 @@
+%%%% utfprpgtex-slides.sty, 2019/02/21, 1.1
+%%%% Copyright (C) 2015-2019 Luiz E. M. Lima (luizeduardomlima@gmail.com)
+%%
+%% Este arquivo pode ser distribuído e/ou modificado sob as condições da
+%% Licença Pública do Projeto LaTeX, tanto a versão 1.3 desta licença ou (à sua
+%% opção) qualquer versão posterior.
+%% A versão mais recente desta licença está disponível em
+%%   http://www.latex-project.org/lppl.txt
+%% e a versão 1.3 ou posterior faz parte de todas as distribuições de LaTeX
+%% versão 2005/12/01 ou posterior.
+%%
+%% Este arquivo tem o estado de manutenção da LPPL `mantida'.
+%%
+%% O mantenedor atual deste arquivo é Luiz E. M. Lima.
+%%
+%% Este projeto consiste dos arquivos utfprpgtex-slides.sty e
+%% utfprpgtex-slides.tex.
+%%
+%% utfprpgtex-slides.sty é o pacote de estilos do modelo LaTeX (não oficial)
+%% para produção de apresentação de slides da Universidade Tecnológica Federal
+%% do Paraná (UTFPR). Foi desenvolvido baseado no modelo de apresentação de
+%% slides do abnTeX2, disponível em <http://www.abntex.net.br/>, criado por
+%% Fábio Rodrigues Silva usando a classe beamer, disponível em
+%% <http://ctan.org/pkg/beamer/>.
+
+%% Identificação e modificações
+\NeedsTeXFormat{LaTeX2e}[2005/12/01]
+\ProvidesPackage{utfprpgtex-slides}[2019/02/21 v1.1 utfprpgtex-slides package]
+%% -- Alteração de alguns pacotes, comandos e formatações no modelo.
+%% -- Alteração de bibtex para biber (biblatex) na geração de citações e referências.
+% \ProvidesPackage{utfprpgtex-slides}[2015/09/20 v1.0 utfprpgtex-slides package]
+%% -- Criação dos arquivos constituintes deste projeto.
+
+%% Opções do pacote
+\newif\if@usemeclogo
+\@usemeclogofalse
+\DeclareOption{UseMECLogo}{%
+  \typeout{-----> Option: UseMECLogo}%
+  \@usemeclogotrue%
+}
+\ProcessOptions\relax
+
+%% Pacotes utilizados
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{babel}
+\RequirePackage{lmodern}
+% \RequirePackage{mathptmx}
+% \RequirePackage{helvet}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{icomma}
+\RequirePackage{csquotes}
+\RequirePackage{xpatch}
+\RequirePackage[%
+  style = abnt,%
+  natbib = true,%
+  uniquename = init,%
+  giveninits,%
+]{biblatex}
+
+%% Definições de cores
+\definecolor{BlackBlue}{RGB}{0, 0, 85}
+\definecolor{UTFPRBlack}{RGB}{55, 52, 53}
+\definecolor{UTFPRYellow}{RGB}{254, 203, 41}
+
+\definecolor{UNIVASFBlack}{RGB}{32, 30, 30}
+\definecolor{UNIVASFYellow}{RGB}{249, 157, 0}
+\definecolor{UNIVASFBlue}{RGB}{0, 115, 219}
+
+%% Variáveis dependentes do idioma
+\iflanguage{english}{%
+  \newcommand*{\mecname}{Ministry of Education}%
+  \newcommand*{\mecnamebf}{MINISTRY OF \textbf{EDUCATION}}%
+  \newcommand*{\utfprname}{Federal University of Technology --- Paraná}%
+  \newcommand*{\sourcename}{Source}%
+  \IfFileExists{english-abnt.lbx}{%
+    \typeout{biblatex-abnt warning: using default language file `english-abnt.lbx'}%
+  }{%
+    \typeout{biblatex-abnt warning: using local language file `abnt-english.lbx'}%
+    \DeclareLanguageMapping{english}{abnt-english}%
+  }%
+}{%
+  \newcommand*{\mecname}{Ministério da Educação}%
+  \newcommand*{\mecnamebf}{MINISTÉRIO DA \textbf{EDUCAÇÃO}}%
+  \newcommand*{\utfprname}{Universidade Tecnológica Federal do Paraná}%
+  \newcommand*{\univasfname}{Universidade Federal do Vale do São Francisco}%
+  \newcommand*{\sourcename}{Fonte}%
+}
+
+%% Definições de comandos
+\newcommand*{\arg@ifnotempty}[2]{%
+  \if#1\empty%
+  \else%
+    #2%
+  \fi%
+}
+\newcommand*{\eventlogo}{}
+\newcommand*{\logoevent}[1]{\renewcommand*{\eventlogo}{\includegraphics[height = 8mm]{./Logos/#1}}}
+\newcommand*{\orglogo}{}
+\newcommand*{\logoorg}[1]{\renewcommand*{\orglogo}{\includegraphics[height = 8mm]{./Logos/#1}}}
+\newcommand*{\extinstlogo}{}
+\newcommand*{\logoextinst}[1]{\renewcommand*{\extinstlogo}{\includegraphics[height = 8mm]{./Logos/#1}}}
+\newcommand*{\proglogo}{}
+\newcommand*{\logoprog}[1]{\renewcommand*{\proglogo}{\includegraphics[height = 8mm]{./Logos/#1}}}
+\newcommand*{\deptlogo}{}
+\newcommand*{\logodept}[1]{\renewcommand*{\deptlogo}{\includegraphics[height = 8mm]{./Logos/#1}}}
+\newcommand*{\campuslogo}{}
+\newcommand*{\logocampus}[1]{\renewcommand*{\campuslogo}{\includegraphics[height = 8mm]{./Logos/#1}}}
+\newcommand*{\meclogo}{%
+  \if@usemeclogo%
+    \parbox[b][8mm][b]{16mm}{\flushright\tiny\sffamily\mecnamebf}%
+  \fi%
+}
+\newcommand*{\eventlogos}{\eventlogo\hskip1ex\orglogo\hfill\extinstlogo\hskip1ex\campuslogo\hskip1ex\meclogo}
+\newcommand*{\institutelogos}{\proglogo\hskip1ex\deptlogo\hfill\campuslogo\hskip1ex\meclogo}
+\newcommand*{\campusacr}{}
+\newcommand*{\campusname}{}
+\newcommand*{\campus}[2]{%
+  \renewcommand*{\campusacr}{{#1}}%
+  \renewcommand*{\campusname}{#2}%
+}
+\newcommand*{\deptlogoam}{}
+\newcommand*{\deptacr}{}
+\newcommand*{\deptname}{}
+\newcommand*{\departamento}[3][]{%
+  \renewcommand*{\deptlogoam}{#1}%
+  \renewcommand*{\deptacr}{{#2}}%
+  \renewcommand*{\deptname}{#3}%
+}
+\newcommand*{\email}[2][]{\inst{#1}\href{mailto:#2}{#2}}
+\newcommand*{\authormail}[1]{\texorpdfstring{\\[\z@]\scriptsize\href{mailto:#1}{#1}}{}}
+\newcommand*{\advisor}[1]{\texorpdfstring{\\[6pt]\scriptsize#1}{}}
+\newcommand*{\sectiontitle}[1]{\nameref{#1}}
+\newcommand*{\subsectiontitle}[1]{\nameref{#1}}
+\newcommand*{\source}[1]{\par\scriptsize\sourcename:\space#1}
+\newcommand*{\linktofile}[2]{\href{run:#1}{\beamergotobutton{#2}}}
+\newcommand*{\sep}{,\space}
+\renewcommand*{\And}{\texorpdfstring{\mode<article>{\sep}\par}{\sep}}
+\newlength{\logoheight}
+
+%% Customizações da classe beamer
+\mode<presentation>{%
+  \usetheme{Boadilla}%
+  \usefonttheme[onlymath]{serif}%
+  \usebackgroundtemplate{\includegraphics[width = \paperwidth, height = \paperheight]{./Logos/fundo-xadrez}}%
+  \setbeamercolor*{title}{fg = black}%
+  \setbeamercolor*{title page}{fg = black}%
+  \setbeamercolor*{frametitle}{fg = black}%
+  \setbeamercolor*{block title}{fg = UNIVASFBlack, bg = UNIVASFBlue}%
+  \setbeamercolor*{structure}{fg = UNIVASFBlue}%
+  \setbeamercolor*{alerted text}{fg = red}%
+  \setbeamercolor*{button}{fg = BlackBlue}%
+  \setbeamercolor*{caption name}{fg = black}%
+  \setbeamercolor*{author in head/foot}{fg = UNIVASFBlack, bg = UNIVASFBlue}%
+  \setbeamercolor*{bibliography entry author}{fg = black}%
+  \setbeamercolor*{bibliography entry title}{fg = black}%
+  \setbeamercolor*{bibliography entry location}{fg = black}%
+  \setbeamercolor*{bibliography entry note}{fg = black}%
+  \setbeamerfont{title}{series = \bfseries}%
+  \setbeamerfont{date}{size = \scriptsize}%
+  \setbeamerfont{caption}{size = \scriptsize}%
+  \setbeamerfont{caption name}{size = \scriptsize}%
+  \setbeamertemplate{caption}[numbered]%
+  \setbeamertemplate{caption label separator}[endash]%
+  \setbeamertemplate{frametitle}{%
+    \insertframetitle\hfill\campuslogo\hskip1ex\meclogo%
+    \par\small\insertframesubtitle%
+  }%
+  \setbeamertemplate{frametitle continuation}[from second][]%
+  \setbeamertemplate{bibliography item}{\scalebox{0.5}{\pgfuseimage{beamericonarticle}}}%
+  \addtobeamertemplate{title page}{\vskip\baselineskip}{\vbox{}}%
+  \setlength{\logoheight}{20mm}%
+}
+
+%% Customizações da classe artigo
+\mode<article>{%
+  \RequirePackage[cm]{fullpage}%
+  \RequirePackage{calc}%
+  \RequirePackage{indentfirst}%
+  \RequirePackage{ccaption}%
+  \RequirePackage{fancyhdr}%
+  \RequirePackage{graphicx}%
+  \RequirePackage{hyperref}%
+  \RequirePackage{tcolorbox}%
+  \setlength{\headheight}{2.5\baselineskip}%
+  \setlength{\headsep}{\z@}%
+  \setlength{\footskip}{\z@}%
+  \setlength{\topmargin}{(\paperheight-\textheight-\headheight-\headsep-\footskip)/2-1in}%
+  \setlength{\parindent}{6mm}%
+  \pagestyle{fancy}%
+  \lhead{\footnotesize\sffamily UTFPR\arg@ifnotempty{\campusacr}{-\campusacr}\arg@ifnotempty{\deptacr}{/\deptacr}\vskip\baselineskip}%
+  \chead{}%
+  \rhead{\footnotesize\sffamily\thepage\vskip\baselineskip}%
+  \lfoot{}%
+  \cfoot{}%
+  \rfoot{}%
+  \renewcommand*{\headrulewidth}{\z@}%
+  \fancypagestyle{firstpagestyle}{%
+    \lhead{%
+      \strut\smash{%
+        \begin{minipage}[b][][c]{35mm}%
+          \flushleft\includegraphics[width = 30mm]{./Logos/logo-univasf}%
+        \end{minipage}%
+      }%
+    }%
+    \chead{%
+      \strut\smash{%
+        \begin{minipage}[b][][c]{100mm}%
+          \arg@ifnotempty{\deptlogoam}{\centering}%
+          {\footnotesize\sffamily\mecname}\vskip-\p@%
+          {\footnotesize\sffamily\bfseries\utfprname}\vskip-\p@%
+          {\footnotesize\sffamily\campusname}\vskip-\p@%
+          {\footnotesize\sffamily\deptname}%
+        \end{minipage}%
+      }%
+    }%
+    \rhead{%
+      \strut\smash{%
+        \begin{minipage}[b][][c]{35mm}%
+          \arg@ifnotempty{\deptlogoam}{\flushright\includegraphics[width = 30mm]{./Logos/\deptlogoam}}%
+        \end{minipage}%
+      }%
+    }%
+    \lfoot{}%
+    \cfoot{}%
+    \rfoot{}%
+    \renewcommand*{\headrule}{%
+      % \vskip\p@%
+      {\color[cmyk]{0, 0, 0, 1}\hrule height 0.5pt}\vskip\p@%
+      {\color[cmyk]{0, 0.2, 1, 0}\hrule height 0.5pt}\vskip\p@%
+    }%
+  }%
+  \renewcommand*{\subtitle}[2][]{%
+    \def\insertsubtitle{#2}%
+    \g@addto@macro{\@title}{\texorpdfstring{\\[\baselineskip]}{\space-\space}\large#2}%
+  }%
+  \renewcommand*{\inst}[1]{\texorpdfstring{\textsuperscript{#1}}{}}%
+  \renewcommand*{\sectiontitle}[1]{\vspace*{-\baselineskip}}%
+  \renewcommand*{\subsectiontitle}[1]{\vspace*{-\baselineskip}}%
+  \renewcommand*{\section}{%
+    \@startsection{section}{1}{\z@}{-\baselineskip}{\baselineskip}{\normalsize\bfseries\MakeUppercase}%
+  }%
+  \tcbuselibrary{skins, breakable}%
+  \setbeamertemplate{block begin}{%
+    \begin{tcolorbox}[%
+      beamer,%
+      breakable,%
+      noparskip,%
+      title = \insertblocktitle,%
+    ]%
+  }%
+  \setbeamertemplate{block end}{%
+    \end{tcolorbox}%
+  }%
+  \AtBeginDocument{\hypersetup{pdftitle = \@title, pdfauthor = \@author}}%
+  \pdfstringdefDisableCommands{%
+    \def\\{}%
+    \def\and{; }%
+  }%
+  \captionstyle{\centering\centerlastline}%
+  \captionnamefont{\small}%
+  \captiontitlefont{\small}%
+  \captiondelim{\space--\space}%
+  \renewcommand*{\source}[1]{\par\small\sourcename:\space#1}%
+  \setlength{\logoheight}{10mm}%
+}
+
+%% Configurações do pacote biblatex --- Modo apresentação
+\mode<presentation>{%
+  \AtBeginBibliography{\scriptsize}%
+  \setlength{\biblabelsep}{0.5\labelsep}%
+  \setlength{\bibitemsep}{0.5\itemsep}%
+  \defbibenvironment{bibliography}{%
+    \list{\printfield[labelalphawidth]{labelalpha}}{%
+      % \setlength{\labelwidth}{\labelalphawidth}%
+      \setlength{\leftmargin}{\labelwidth}%
+      \setlength{\labelsep}{\biblabelsep}%
+      \addtolength{\leftmargin}{\labelsep}%
+      \setlength{\itemsep}{\bibitemsep}%
+      \setlength{\parsep}{\bibparsep}%
+    }%
+    \renewcommand*{\makelabel}[1]{\hss##1}%
+  }{\endlist}{\item}%
+}
+
+%% Configurações do pacote hyperref
+\hypersetup{%
+  breaklinks = true,%
+  colorlinks = true,%
+  citecolor = BlackBlue,%
+  filecolor = BlackBlue,%
+  linkcolor = BlackBlue,%
+  urlcolor = BlackBlue,%
+  bookmarksopen = true,%
+  bookmarksnumbered = true,%
+  pdfdisplaydoctitle = true,%
+  pdfpagelayout = SinglePage,%
+}
+
+%% Configurações do pacote url
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+
+%% Legendas
+\setlength{\abovecaptionskip}{\z@}
+\setlength{\belowcaptionskip}{\z@}
+
+%% Supressão dos avisos para caixas
+\hfuzz=20pt
+\vfuzz=20pt
+\hbadness=2000
+\vbadness=\maxdimen
+
+%% Supressão do aviso para notas de rodapé
+\RequirePackage{silence}
+\WarningFilter{biblatex}{Patching footnotes failed}
