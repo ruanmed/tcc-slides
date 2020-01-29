@@ -1,3 +1,14 @@
+*~
+*.swo
+
+/_minted-main
+# main.*
+# !main.pdf
+# !main.tex
+main.pdf
+.DS_Store
+
+# TeX.gitignore from https://github.com/github/gitignore/blob/master/TeX.gitignore
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
