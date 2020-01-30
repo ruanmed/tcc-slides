@@ -1,0 +1,32 @@
+\begin{table}[!thb]
+	%\huge
+    \centering
+    \caption{Resumo dos detalhes das soluções selecionadas.}
+    \begin{adjustbox}{max width={\textwidth},keepaspectratio}%
+    \begin{tabular}{|l|c|c|c|c|c|}
+        % \toprule
+        \hline
+        \textbf{Solução}
+        & \textbf{Pré-processamento} & \textbf{Núm. atrib.} & \textbf{Redução dim.} 
+        & \textbf{Núm. atrib. após}  & \textbf{Classificador}
+        \\ \hline
+        1\_bertha        
+        & ELMo          & 200 x 1024        & Não
+        & 200 x 1024    & CNN (5 cam. esc.) 
+        \\ \hline
+        4\_tom
+        & GloVe         & 300               & Não
+        & 300           & SVC                
+        \\ \hline
+        2\_daneshvar18
+        & N-gram palavras+caracteres & 1243271           & Sim
+        & 300           & LinearSVC          
+        \\ 
+        \hline
+        % \bottomrule
+    \end{tabular}
+    \end{adjustbox}
+    \text{\footnotesize \textbf{Fonte:} O autor.}
+    \label{tab:resumo-soluções} 
+    % \legend{\textbf{Fonte:} O autor.}
+\end{table}
