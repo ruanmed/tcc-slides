@@ -338,36 +338,36 @@
     \subsection{Recuperação de Informação}\label{subsec:RI}
 
 
-    \begin{frame}{\sectiontitle{subsec:RI}}{A área de estudo}
-        Desde o princípio dos registros físicos, os humanos tem uma certa preocupação com o armazenamento de informação e modos de obter informação, que é uma necessidade humana.
+    % \begin{frame}{\sectiontitle{subsec:RI}}{A área de estudo}
+    %     Desde o princípio dos registros físicos, os humanos tem uma certa preocupação com o armazenamento de informação e modos de obter informação, que é uma necessidade humana.
 
-        \begin{block}{Evolução da transferência de informação}
-            \begin{itemize}
-                \item Consulta a outras pessoas;
-                \item Registros físicos em papeis e similares;
-                \item Meios digitais.
-            \end{itemize}
-        \end{block}
+    %     \begin{block}{Evolução da transferência de informação}
+    %         \begin{itemize}
+    %             \item Consulta a outras pessoas;
+    %             \item Registros físicos em papeis e similares;
+    %             \item Meios digitais.
+    %         \end{itemize}
+    %     \end{block}
 
-        % Devido ao volume enorme de conhecimento gerado pela humanidade é necessário otimizar a busca de informações específicas:
-        % \item Sistemas de classificação de áreas e subáreas do conhecimento
-        \begin{itemize}
-            \item Otimização da busca de informações específicas:
-            \begin{itemize}
-                \item Sistemas manuais de classificação de áreas e subáreas do conhecimento;
-            \end{itemize}
-            \item Ineficácia dos sistemas manuais:
-            \begin{itemize}
-                \item Sistemas mecânicos no início do século 20;
-                \item Sistemas computacionais na década de 1940.
-            \end{itemize}
-        \end{itemize}
-        % Ainda assim sistemas manuais se tornaram ineficazes, surgiram, no início do século 20, os primeiros sistemas mecânicas de recuperação de informação.
+    %     % Devido ao volume enorme de conhecimento gerado pela humanidade é necessário otimizar a busca de informações específicas:
+    %     % \item Sistemas de classificação de áreas e subáreas do conhecimento
+    %     \begin{itemize}
+    %         \item Otimização da busca de informações específicas:
+    %         \begin{itemize}
+    %             \item Sistemas manuais de classificação de áreas e subáreas do conhecimento;
+    %         \end{itemize}
+    %         \item Ineficácia dos sistemas manuais:
+    %         \begin{itemize}
+    %             \item Sistemas mecânicos no início do século 20;
+    %             \item Sistemas computacionais na década de 1940.
+    %         \end{itemize}
+    %     \end{itemize}
+    %     % Ainda assim sistemas manuais se tornaram ineficazes, surgiram, no início do século 20, os primeiros sistemas mecânicas de recuperação de informação.
 
-        % Sistemas computacionais introduzidos na década de 1940 utilizados para consulta rápida de informações armazenadas.
+    %     % Sistemas computacionais introduzidos na década de 1940 utilizados para consulta rápida de informações armazenadas.
 
-        Necessidade de estabelecer algoritmos que retornem informação relevante aos usuários dos sistemas de RI.
-    \end{frame}
+    %     Necessidade de estabelecer algoritmos que retornem informação relevante aos usuários dos sistemas de RI.
+    % \end{frame}
 
     \begin{frame}{\sectiontitle{subsec:RI}}{A área de estudo}
         \begin{block}{Campo científico de Recuperação de Informação}
@@ -398,20 +398,20 @@
         % \end{columns}
     \end{frame}
 
-    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Vocabulário}
-        \begin{itemize}
-            \item Termo: sinônimo de palavra;
-            \item Documento: objeto digital que contém dados textuais, contém termos;
-            \item Coleção de documentos: o conjunto de documentos disponíveis num sistema de RI;
-            \item Consulta: sequência de termos que representam uma necessidade de informação.
-        \end{itemize}
-    \end{frame}
+    % \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Vocabulário}
+    %     \begin{itemize}
+    %         \item Termo: sinônimo de palavra;
+    %         \item Documento: objeto digital que contém dados textuais, contém termos;
+    %         \item Coleção de documentos: o conjunto de documentos disponíveis num sistema de RI;
+    %         \item Consulta: sequência de termos que representam uma necessidade de informação.
+    %     \end{itemize}
+    % \end{frame}
 
-    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Métodos booleanos}
-        \input{tex/table/matriz-incidencia-termo-documento.tex}
-    \end{frame}
+    % \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Métodos booleanos}
+    %     \input{tex/table/matriz-incidencia-termo-documento.tex}
+    % \end{frame}
 
-    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Ranqueamento}
+    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Maior interesse: ranqueamento}
         Recuperação ranqueada:
         \begin{itemize}
             \item Estabelece uma pontuação para cada resultado;
@@ -438,110 +438,110 @@
 
     \end{frame}
 
-    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Recuperação ranqueada: exemplo de tf--idf}
-        \begin{columns}[t]
-            \column{0.67\textwidth}
-            \input{tex/table/tf-idf-exemplo.tex}
+    % \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Recuperação ranqueada: exemplo de tf--idf}
+    %     \begin{columns}[t]
+    %         \column{0.67\textwidth}
+    %         \input{tex/table/tf-idf-exemplo.tex}
 
-            \column{0.30\textwidth}
-            \begin{equation}
-                \label{eq:pontuação-simples-tf-idf}
-                \text{Pontuação(\textit{q},\textit{d})} = \sum_{\textit{t} \in \textit{q}}^{} \text{tf-idf}_{\text{\textit{t},\textit{d}}}.
-            \end{equation}
+    %         \column{0.30\textwidth}
+    %         \begin{equation}
+    %             \label{eq:pontuação-simples-tf-idf}
+    %             \text{Pontuação(\textit{q},\textit{d})} = \sum_{\textit{t} \in \textit{q}}^{} \text{tf-idf}_{\text{\textit{t},\textit{d}}}.
+    %         \end{equation}
 
-            \vspace{1cm}
+    %         \vspace{1cm}
 
-            $\text{Pontuação(\{\textit{auto},\textit{car}\},D\textsubscript{x})}$ para cada documento:
-            \begin{itemize}
-                \setlength\itemsep{-0.2em}
-                \item D\textsubscript{1}: 50,79
-                \item D\textsubscript{2}: 75,24
-                \item D\textsubscript{3}: 39,60
-            \end{itemize}
-        \end{columns}
-    \end{frame}
+    %         $\text{Pontuação(\{\textit{auto},\textit{car}\},D\textsubscript{x})}$ para cada documento:
+    %         \begin{itemize}
+    %             \setlength\itemsep{-0.2em}
+    %             \item D\textsubscript{1}: 50,79
+    %             \item D\textsubscript{2}: 75,24
+    %             \item D\textsubscript{3}: 39,60
+    %         \end{itemize}
+    %     \end{columns}
+    % \end{frame}
 
-    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Recuperação ranqueada: Modelo de espaço vetorial}
-        Modelo de espaço vetorial:
-        \begin{itemize}
-            \item Surge a partir das limitações do modelo booleano;
+    % \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Recuperação ranqueada: Modelo de espaço vetorial}
+    %     Modelo de espaço vetorial:
+    %     \begin{itemize}
+    %         \item Surge a partir das limitações do modelo booleano;
 
-            \item Representação dos documentos em um espaço vetorial comum.
-        \end{itemize}
-
-
-        \begin{block}{Vantagens do modelo vetorial}
-            \begin{itemize}
-                \item Melhora da qualidade dos resultados;
-
-                \item Capacidade de correspondência parcial;
-
-                \item Organização dos resultados pelo grau de similaridade com a consulta; e
-
-                \item Normalização dos tamanhos dos documentos.
-            \end{itemize}
-        \end{block}
-    \end{frame}
-
-    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Recuperação ranqueada: Modelo de espaço vetorial}
-        Representação dos documentos e das consultas:
-        \begin{itemize}
-            \item Vetores $t$-dimensionais;
-            \item Pesos de cada termo são associados.
-        \end{itemize}
-        \begin{equation}
-            \label{eq:vetor-pesos-documento}
-    		\vec{d_j} = (w_{1,j}, w_{2,j}, \cdots , w_{t,j})
-        \end{equation}
-        \begin{equation}
-            \label{eq:vetor-pesos-consulta}
-    		\vec{q} = (w_{1,q}, w_{2,q}, \cdots , w_{t,q})
-        \end{equation}
-
-        \begin{block}{Padrão de peso mais utilizado}
-            \begin{equation}
-                \text{tf-idf}_{\text{\textit{t},\textit{d}}}
-            \end{equation}
-
-            Segundo \cite[p.~77--78]{Baeza-Yates2011}, como $w_{i,q}$ é o peso associado com o par termo-consulta $(k_i, q)$, a aplicação do $\text{tf-idf}_{\text{\textit{t},\textit{d}}}$ vira $\text{tf-idf}_{k_i\text{,}\textit{q}}$ para os pesos associados à uma consulta $q$.
-        \end{block}
-    \end{frame}
+    %         \item Representação dos documentos em um espaço vetorial comum.
+    %     \end{itemize}
 
 
-    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Recuperação ranqueada: exemplo do modelo vetorial}
-        \begin{columns}[t]
-            \column{0.50\textwidth}
-            \input{tex/figure/cosine-sim.tex}
+    %     \begin{block}{Vantagens do modelo vetorial}
+    %         \begin{itemize}
+    %             \item Melhora da qualidade dos resultados;
 
-            \column{0.45\textwidth}
-            \vspace{1cm}
-            \begin{block}{Função de ranqueamento}
-            \begin{equation}
-                \label{eq:pontuação-similaridade-cosseno}
-        		\text{Pontuação\_COS}(\vec{d_j}, \vec{q}) = \frac{\vec{d_j} \bullet \vec{q} }{ \norm{\vec{d_j}} \times \norm{\vec{q}} }
-            \end{equation}
-            \end{block}
-            \vspace{1cm}
+    %             \item Capacidade de correspondência parcial;
 
-        \end{columns}
-    \end{frame}
+    %             \item Organização dos resultados pelo grau de similaridade com a consulta; e
 
-    \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Recuperação ranqueada: modelo probabilístico}
-        Modelos probabilísticos:
-        \begin{itemize}
-            \item Partem do princípio da incerteza da relevância dos documentos retornados (PRP);
-            \item Função de ranqueamento definida estatisticamente como $P(R = 1| d,q)$ onde $R \in \{0, 1\}$ é uma variável binária aleatória que denota a relevância.
-        \end{itemize}
+    %             \item Normalização dos tamanhos dos documentos.
+    %         \end{itemize}
+    %     \end{block}
+    % \end{frame}
 
-        Segundo \cite[p.~333]{robertson_probabilistic_2010}, o
-        princípio do ranqueamento probabilístico (PRP) é a base para o chamado \textit{Framework} de Relevância Probabilística o qual, por sua vez, deu origem aos:
-        \begin{itemize}
-            \item Modelo de independência binária (BIM);
-            \item Modelos de \textit{feedback} de relevância;
-            \item BM25; e a
-            \item Diversas variações do BM25.
-        \end{itemize}
-    \end{frame}
+    % \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Recuperação ranqueada: Modelo de espaço vetorial}
+    %     Representação dos documentos e das consultas:
+    %     \begin{itemize}
+    %         \item Vetores $t$-dimensionais;
+    %         \item Pesos de cada termo são associados.
+    %     \end{itemize}
+    %     \begin{equation}
+    %         \label{eq:vetor-pesos-documento}
+    % 		\vec{d_j} = (w_{1,j}, w_{2,j}, \cdots , w_{t,j})
+    %     \end{equation}
+    %     \begin{equation}
+    %         \label{eq:vetor-pesos-consulta}
+    % 		\vec{q} = (w_{1,q}, w_{2,q}, \cdots , w_{t,q})
+    %     \end{equation}
+
+    %     \begin{block}{Padrão de peso mais utilizado}
+    %         \begin{equation}
+    %             \text{tf-idf}_{\text{\textit{t},\textit{d}}}
+    %         \end{equation}
+
+    %         Segundo \cite[p.~77--78]{Baeza-Yates2011}, como $w_{i,q}$ é o peso associado com o par termo-consulta $(k_i, q)$, a aplicação do $\text{tf-idf}_{\text{\textit{t},\textit{d}}}$ vira $\text{tf-idf}_{k_i\text{,}\textit{q}}$ para os pesos associados à uma consulta $q$.
+    %     \end{block}
+    % \end{frame}
+
+
+    % \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Recuperação ranqueada: exemplo do modelo vetorial}
+    %     \begin{columns}[t]
+    %         \column{0.50\textwidth}
+    %         \input{tex/figure/cosine-sim.tex}
+
+    %         \column{0.45\textwidth}
+    %         \vspace{1cm}
+    %         \begin{block}{Função de ranqueamento}
+    %         \begin{equation}
+    %             \label{eq:pontuação-similaridade-cosseno}
+    %     		\text{Pontuação\_COS}(\vec{d_j}, \vec{q}) = \frac{\vec{d_j} \bullet \vec{q} }{ \norm{\vec{d_j}} \times \norm{\vec{q}} }
+    %         \end{equation}
+    %         \end{block}
+    %         \vspace{1cm}
+
+    %     \end{columns}
+    % \end{frame}
+
+    % \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Recuperação ranqueada: modelo probabilístico}
+    %     Modelos probabilísticos:
+    %     \begin{itemize}
+    %         \item Partem do princípio da incerteza da relevância dos documentos retornados (PRP);
+    %         \item Função de ranqueamento definida estatisticamente como $P(R = 1| d,q)$ onde $R \in \{0, 1\}$ é uma variável binária aleatória que denota a relevância.
+    %     \end{itemize}
+
+    %     Segundo \cite[p.~333]{robertson_probabilistic_2010}, o
+    %     princípio do ranqueamento probabilístico (PRP) é a base para o chamado \textit{Framework} de Relevância Probabilística o qual, por sua vez, deu origem aos:
+    %     \begin{itemize}
+    %         \item Modelo de independência binária (BIM);
+    %         \item Modelos de \textit{feedback} de relevância;
+    %         \item BM25; e a
+    %         \item Diversas variações do BM25.
+    %     \end{itemize}
+    % \end{frame}
 
     \begin{frame}[fragile = singleslide]{\sectiontitle{subsec:RI}}{Recuperação ranqueada: modelo probabilístico - Okapi BM25}
         Função de ranqueamento Okapi BM25:
@@ -669,7 +669,7 @@
                 \item Pré-processamento do KDD direcionado à limpeza e integração dos dados, etapas 1 e 2.
             \end{itemize}
 
-            \item Mineração de Texto trabalho com dados desestruturados.
+            \item Mineração de Texto trabalha com dados desestruturados.
                 \begin{itemize}
                     \item Pré-processamento focado em mais extração de atributos, etapas 3 e 4.
                 \end{itemize}
@@ -708,12 +708,21 @@
         \begin{itemize}
             \item Vários formatos de texto são utilizados para o processamento computacional de texto:
             \begin{itemize}
-                \item MS Word com extensão ``doc'';
-                \item MS PowerPoint com extensão ``ppt'';
-                \item MS Excel com o ``xls'';
+                \item Formatos proprietários da Microsoft:
+                \begin{itemize}    
+                    \item MS Word com extensão ``doc'';
+                    \item MS PowerPoint com extensão ``ppt'';
+                    \item MS Excel com o ``xls'';
+                \end{itemize}
+                \item Formatos abertos ODF:
+                \begin{itemize}    
+                    \item Documentos de texto com extensão ``odt'';
+                    \item Apresentações com extensão ``odp'';
+                    \item Folhas de cálculo com extensão ``ods'';
+                \end{itemize}
                 \item PDF para transferência entre computadores.
             \end{itemize}
-            \item Texto simples, ou texto sem formatação, é o formato mais elementar de texto que é feito por um editor de texto.
+            \item Texto simples (sem formatação) é o formato mais elementar de texto que é feito por um editor.
 
             \item Corpus é uma coleção de textos simples, referenciada pelo diretório que contém os arquivos de texto \cite[p.~6]{Jo2018TMCIBDC}.
 
@@ -890,7 +899,7 @@
         \end{columns}
     \end{frame}
 
-\section{Material e Métodos}\label{sec:matmet}
+\section{Materiais e Métodos}\label{sec:matmet}
 
     \begin{frame}{\sectiontitle{sec:matmet}}{Metodologia proposta}
         \begin{columns}[t]
@@ -1007,7 +1016,7 @@
                     \begin{itemize}
                         \vspace{-0.5cm}
                         \item $k_1 = 1.2$;
-                        \item $k_3 = 0$
+                        \item $k_3 = 0$;
                         \item $b = 0.75$; e
                         \item $\text{top-}k = 100$.
                     \end{itemize}
@@ -1015,7 +1024,7 @@
 
                     \item RNG\footnote{gerador de números aleatórios} fixo para permitir reprodutibilidade.
 
-                    \item As dependências soluções selecionadas foram instaladas: bibliotecas adicionais do Python e download de arquivos específicos para essas bibliotecas.
+                    \item As dependências das soluções selecionadas foram instaladas: bibliotecas adicionais do Python e download de arquivos específicos para essas bibliotecas.
                 \end{itemize}
         \end{columns}
     \end{frame}
@@ -1025,12 +1034,12 @@
             \begin{itemize}
                 \item DB\_HYPERPARTISAN:
                     \begin{itemize}
-                        \item 1\_bertha
-                        \item 4\_tom
+                        \item 1\_bertha \cite{jiang-etal-2019-team}
+                        \item 4\_tom \cite{yeh-etal-2019-tom}
                     \end{itemize}
                 \item DB\_AUTHORPROF:
                     \begin{itemize}
-                        \item 2\_daneshvar18
+                        \item 2\_daneshvar18 \cite{daneshvar:2018}
                     \end{itemize}
             \end{itemize}
     \end{frame}
